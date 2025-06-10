@@ -1,0 +1,27 @@
+<button class="button is-info" [routerLink]="['/sales/create']">Create new</button>
+<br />
+<br />
+<table class="table is-fullwidth">
+  <thead>
+    <th>sale ID</th>
+    <th>Firstname</th>
+    <th>Lastname</th>
+    <th></th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let sale of sales">
+      <td>{{sale.saleId}}</td>
+      <td>{{sale.firstname}}</td>
+      <td>{{sale.lastname}}</td>
+      <td>
+        <button class="button is-warning" (click)="navToEditPage(sale.saleId)">Edit</button>
+        &nbsp;
+        <button class="button is-danger" (click)="openDeleteModal(sale.saleId)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<app-delete-sale-modal [valuesForDeleteModal]="valuesForDeleteModal" (cancelDeleteModal)="cancelDeleteModal($event)"
+  (reloadTable)="reloadTable()">
+</app-delete-sale-modal>
